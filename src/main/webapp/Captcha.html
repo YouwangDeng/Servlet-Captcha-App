@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Captcha</title>
+    <style>
+        #img {
+            width: 200px;
+            height: 100px;
+        }
+        label {
+            display: inline-block;
+            width: 70px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<form action="/loginServlet" method="post">
+    <label>User: </label><input name="username">
+    <br/>
+    <label>Password: </label><input name="password" type="password">
+    <br/>
+    <label>Captcha: </label><input name="captcha">
+    <br/>
+    <img id="img" src="/captchaServlet">
+    <br/>
+    <a onclick="refresh()" href="javascript:void(0);">Click to Refresh Captcha</a>
+    <br/>
+    <button type="submit">Login</button>
+</form>
+</body>
+<script>
+    function refresh() {
+        document.getElementById('img').src = '/captchaServlet?random=' + Math.random();
+    }
+</script>
